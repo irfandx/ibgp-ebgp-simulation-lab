@@ -1,0 +1,81 @@
+!
+! Last configuration change at 16:09:59 UTC Tue Oct 27 2026
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname CUST_R_SITE2
+!
+boot-start-marker
+boot-end-marker
+!
+no aaa new-model
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+redundancy
+!
+interface Loopback0
+ ip address 5.5.5.5 255.255.255.0
+!
+interface GigabitEthernet0/0
+ ip address 192.168.45.5 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router bgp 65003
+ bgp log-neighbor-changes
+ network 192.168.45.0
+ network 5.5.5.0 mask 255.255.255.0
+ neighbor 192.168.45.4 remote-as 65002
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ipv6 ioam timestamp
+!
+control-plane
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end
