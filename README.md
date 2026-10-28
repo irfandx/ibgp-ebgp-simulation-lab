@@ -1,4 +1,4 @@
-# iBGP & eBGP Simulation Lab
+# iBGP and eBGP route distribution lab
 
 A small service-provider style lab that shows how **eBGP** (customer to ISP) and **iBGP** (inside the ISP) work together, with **OSPF** as the ISP's IGP and **next-hop-self** on the edge routers.
 
